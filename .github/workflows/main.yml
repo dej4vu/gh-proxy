@@ -14,10 +14,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # 安装 Wrangler
+      - name: Install Wrangler
+        run: npm install -g wrangler@3.99.0
+
       # 部署到 Cloudflare Workers
       - name: Deploy to Cloudflare
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        env:
+          CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: npx wrangler deploy index.js --account-id ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
