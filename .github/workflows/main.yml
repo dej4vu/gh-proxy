@@ -1,20 +1,23 @@
-name: Deploy Worker
+name: Deploy to Cloudflare Workers
+
 on:
   push:
     branches:
       - master
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
-    needs: test
+
     steps:
-      - uses: actions/checkout@v4
-      - name: Build & Deploy Worker
+      # 检出代码
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 部署到 Cloudflare Workers
+      - name: Deploy to Cloudflare
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        env:
-          NODE_ENV: production
-          run: npx wrangler deploy ./index.js
+
