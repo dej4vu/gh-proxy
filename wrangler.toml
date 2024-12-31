@@ -1,7 +1,5 @@
 name = "gh-proxy"
-type = "javascript"
 account_id = "${{ secrets.CLOUDFLARE_ACCOUNT_ID }}"
 workers_dev = true
 
-[build.upload]
-main = "./index.js"
+main = "./index.js" # 指向项目根目录下的 index.js
