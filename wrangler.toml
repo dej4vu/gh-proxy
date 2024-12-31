@@ -1,0 +1,7 @@
+name = "gh-proxy"
+type = "javascript"
+account_id = "${{ secrets.CLOUDFLARE_ACCOUNT_ID }}"
+workers_dev = true
+
+[build.upload]
+main = "./index.js"
