@@ -22,7 +22,5 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        run: |
-          TODAY=$(date +%Y-%m-%d)
-          npx wrangler deploy index.js --name gh --compatibility-date $TODAY
+        run: npx wrangler deploy
 
